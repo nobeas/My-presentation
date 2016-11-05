@@ -1,0 +1,34 @@
+---
+title: "My presentation"
+author: "Isaac N Beas"
+date: "11/6/2016"
+output: ioslides_presentation
+---
+
+```{r Eval=FALSE}
+library(plotly)
+
+x <- c(1:100)
+random_y <- rnorm(100, mean = 0)
+data <- data.frame(x, random_y)
+
+plot_ly(data, x = ~x, y = ~random_y, type = 'scatter', mode = 'lines')
+```
+
+
+```{r cars, echo = TRUE}
+library(plotly)
+
+dens <- with(diamonds, tapply(price, INDEX = cut, density))
+df <- data.frame(
+  x = unlist(lapply(dens, "[[", "x")),
+  y = unlist(lapply(dens, "[[", "y")),
+  cut = rep(names(dens), each = length(dens[[1]]$x))
+)
+
+plot_ly(df, x = ~x, y = ~y, color = ~cut) %>%
+  add_lines()
+```
+
+
+
